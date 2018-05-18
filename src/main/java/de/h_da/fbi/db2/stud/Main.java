@@ -22,6 +22,7 @@ public class Main {
      * @param args Command-Line Arguments.
      */
     public static void main(String[] args) {
+	System.out.println("Hello World");
     	try{
             //Read default csv
             final List<String[]> defaultCsvLines = CsvDataReader.read();
@@ -40,5 +41,9 @@ public class Main {
         {
             System.out.println(ioe);
         }
+    }
+    
+    public String getGreeting() {
+        return "app should have a greeting";
     }
 }
