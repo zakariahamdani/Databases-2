@@ -31,15 +31,25 @@ public class CsvDataReader {
      * @throws URISyntaxException 
      */
     public static List<String> getAvailableFiles() throws IOException, URISyntaxException {
-        List<String> fileList = new ArrayList<>();
         final Enumeration<URL> en = CsvDataReader.class.getClassLoader().getResources("");
         en.nextElement();
         File hackyFile = new File(en.nextElement().toURI());
-        return Arrays.asList(hackyFile.listFiles()).stream()
+        File[] filenames = hackyFile.listFiles();
+        
+        List<String> fileList;
+                
+        if(filenames == null){
+            fileList = new ArrayList<>();
+        }else {
+        
+            fileList = Arrays.asList(filenames).stream()
                 .filter(file -> file.isFile())
                 .filter(file -> file.getName().endsWith(".csv"))
                 .map(file -> file.getName())
                 .collect(Collectors.toList());
+        }
+        
+        return fileList;
     }
     
     /**
