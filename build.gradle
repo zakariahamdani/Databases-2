@@ -13,13 +13,26 @@ plugins {
     // Apply the application plugin to add support for building an application
     id 'application'
 
-    id "com.github.spotbugs" version "1.6.1"
+    id 'com.github.spotbugs' version "1.6.1"
+
+    id 'checkstyle'
 }
 
 // Define the main class for the application
 mainClassName = 'de.h_da.fbi.db2.stud.Main'
 
 tasks.withType(com.github.spotbugs.SpotBugsTask) {
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+checkstyle {
+	toolVersion "7.6.1"
+}
+
+tasks.withType(Checkstyle) {
   reports {
     xml.enabled = false
     html.enabled = true
