@@ -1,4 +1,4 @@
-package de.h_da.fbi.db2.tools;
+package de.hda.fbi.db2.tools;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -19,12 +17,12 @@ import java.util.stream.Collectors;
  */
 public class CsvDataReader {
     private static final String SPLIT_CHARACTER = ";";
-    private static final Logger log = Logger.getLogger( CsvDataReader.class.getName() );
+    private static final Logger log = Logger.getLogger(CsvDataReader.class.getName());
     
     private CsvDataReader() {}
 
     /**
-     * Lists all available csv files in the resource folder
+     * Lists all available csv files in the resource folder.
      * <strong>WARNING:</strong> May won't work on your machine
      * @return list of csv filenames
      * @throws IOException
@@ -38,9 +36,9 @@ public class CsvDataReader {
         
         List<String> fileList;
                 
-        if(filenames == null){
+        if (filenames == null) {
             fileList = new ArrayList<>();
-        }else {
+        } else {
         
             fileList = Arrays.asList(filenames).stream()
                 .filter(file -> file.isFile())
@@ -53,38 +51,42 @@ public class CsvDataReader {
     }
     
     /**
-     * Reads the given embedded file and returns its content in an accessible form
+     * Reads the given embedded file and returns its content in an accessible form.
      * @param otherFile filename of csv file in resource folder
-     * @return content of the related file as a list of split strings including the CSV-header at first position.
+     * @return content of the related file as a list of split strings including 
+     * the CSV-header at first position.
      * @throws URISyntaxException
      * @throws IOException
      */
     public static List<String[]> read(String otherFile) throws IOException, URISyntaxException {
-        try{
-            if(!getAvailableFiles().contains(otherFile)){
+        try {
+            if (!getAvailableFiles().contains(otherFile)){
                 throw new IOException("File not found in Resources.");
             }
-        }catch(IOException ioe){
+        } catch (IOException ioe){
             throw ioe;
-        }catch(Exception e){
-            log.warning("CsvDataReader.getAvailableFiles() threw a exception. Skipping file verification.");
+        } catch (Exception e){
+            log.warning("CsvDataReader.getAvailableFiles() threw a exception."
+                    + " Skipping file verification.");
         }
-        final URL resource = CsvDataReader.class.getResource("/"+otherFile);
-        if(resource == null) {
+        final URL resource = CsvDataReader.class.getResource("/" + otherFile);
+        if (resource == null) {
             throw new IllegalStateException("Unable to find the csv file.");
         }
         return readFile(new File(resource.toURI()));
     }
     
     /**
-     * Reads the embedded <code>Wissenstest_sample200.csv</code> file and returns its content in an accessible form
-     * @return content of the related file as a list of split strings including the CSV-header at first position.
+     * Reads the embedded <code>Wissenstest_sample200.csv</code> file and 
+     * returns its content in an accessible form.
+     * @return content of the related file as a list of split strings including 
+     * the CSV-header at first position.
      * @throws URISyntaxException
      * @throws IOException
      */
     public static List<String[]> read() throws URISyntaxException, IOException {
         final URL resource = CsvDataReader.class.getResource("/Wissenstest_sample200.csv");
-        if(resource == null) {
+        if (resource == null) {
             throw new IllegalStateException("Unable to find the csv file.");
         }
         return readFile(new File(resource.toURI()));

@@ -1,13 +1,10 @@
-package de.h_da.fbi.db2.stud;
-import de.h_da.fbi.db2.tools.CsvDataReader;
-import java.net.URISyntaxException;
+package de.hda.fbi.db2.stud;
+
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
-import de.h_da.fbi.db2.tools.CsvDataReader;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.List;
+import de.hda.fbi.db2.tools.CsvDataReader;
 
 /**
  * Main Class.
@@ -22,23 +19,19 @@ public class Main {
      * @param args Command-Line Arguments.
      */
     public static void main(String[] args) {
-	System.out.println("Hello World");
-    	try{
+        System.out.println("Hello World");
+        try {
             //Read default csv
             final List<String[]> defaultCsvLines = CsvDataReader.read();
             
             //Read (if available) additional csv-files and default csv-file
             List<String> availableFiles = CsvDataReader.getAvailableFiles();
-            for(String availableFile: availableFiles){
+            for (String availableFile: availableFiles){
                 final List<String[]> additionalCsvLines = CsvDataReader.read(availableFile);
             }
-        }
-        catch(URISyntaxException use)
-        {
+        } catch (URISyntaxException use) {
             System.out.println(use);
-        }
-        catch(IOException ioe)
-        {
+        } catch (IOException ioe) {
             System.out.println(ioe);
         }
     }

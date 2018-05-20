@@ -1,9 +1,9 @@
-package de.h_da.fbi.db2.persistence;
+package de.hda.fbi.db2.persistence;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.sql.Timestamp;
 import java.time.Instant;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * Converter class to convert a {@link Timestamp} to {@link Instant} and back.<br/>

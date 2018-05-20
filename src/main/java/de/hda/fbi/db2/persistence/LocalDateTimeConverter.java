@@ -1,10 +1,9 @@
-package de.h_da.fbi.db2.persistence;
+package de.hda.fbi.db2.persistence;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
 
 /**
  * Converter class to convert a {@link Timestamp} to {@link LocalDateTime} and back.<br/>
@@ -22,7 +21,7 @@ public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime,
 
     @Override
     public LocalDateTime convertToEntityAttribute(final Timestamp timestamp) {
-        if(timestamp == null) {
+        if (timestamp == null) {
             return null;
         }
         return timestamp.toLocalDateTime();
