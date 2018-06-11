@@ -19,7 +19,7 @@ plugins {
 }
 
 // Define the main class for the application
-mainClassName = 'de.h_da.fbi.db2.stud.Main'
+mainClassName = 'de.hda.fbi.db2.stud.Main'
 
 tasks.withType(com.github.spotbugs.SpotBugsTask) {
   reports {
