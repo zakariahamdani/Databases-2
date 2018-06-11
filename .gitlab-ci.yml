@@ -7,9 +7,45 @@ before_script:
 
 stages:
   - build
+  - check
 
 build:
   stage: build
   script:
-    - echo $(pwd)
-    - ./gradlew build
+    - ./gradlew assemble
+
+checkstyle_main:
+  stage: check
+  script:
+    - ./gradlew check checkstyleMain
+  artifacts:
+    paths:
+    - build/reports/checkstyle/main.html
+    expire_in: 1 week
+
+checkstyle_test:
+  stage: check
+  script:
+    - ./gradlew check checkstyleTest
+  artifacts:
+    paths:
+    - build/reports/checkstyle/test.html
+    expire_in: 1 week
+
+spotbugs_main:
+  stage: check
+  script:
+    - ./gradlew check spotbugsMain 
+  artifacts:
+    paths:
+    - build/reports/spotbugs/main.html
+    expire_in: 1 week
+
+spotbugs_test:
+  stage: check
+  script:
+    - ./gradlew check spotbugsTest
+  artifacts:
+    paths:
+    - build/reports/spotbugs/test.html
+    expire_in: 1 week
