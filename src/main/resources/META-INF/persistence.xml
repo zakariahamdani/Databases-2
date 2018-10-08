@@ -5,8 +5,8 @@
       <!-- put your entity-classes here -->
 
       <!-- this must be provided -->
-      <class>de.h_da.fbi.db2.persistence.LocalDateTimeConverter</class>
-      <class>de.h_da.fbi.db2.persistence.InstantConverter</class>
+      <class>de.hda.fbi.db2.persistence.LocalDateTimeConverter</class>
+      <class>de.hda.fbi.db2.persistence.InstantConverter</class>
       <properties>
          <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@?.?.?.?:1521:orcl"/>
          <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
