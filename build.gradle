@@ -47,7 +47,13 @@ dependencies {
     compile 'com.google.guava:guava:23.0'
 
     // Use eclipselink JPA Implementation
-    compile 'org.eclipse.persistence:eclipselink:2.7.1'
+    compile 'org.eclipse.persistence:eclipselink:2.6.4'
+
+    //Oracle JDBC Driver and any other libraries from 'libs' folder since not available in public maven
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.1'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'

@@ -23,4 +23,25 @@
          <property name="eclipselink.logging.session" value="false"/>
       </properties>
    </persistence-unit>
+   <persistence-unit name="postgresPU" transaction-type="RESOURCE_LOCAL">
+      <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+      <!-- put your entity-classes here -->
+
+      <!-- this must be provided -->
+      <properties>
+         <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/postgres" />
+         <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+         <property name="javax.persistence.jdbc.user" value="dbadmin" />
+         <property name="javax.persistence.jdbc.password" value="dbadminpassword" />
+
+         <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+         <property name="eclipselink.logging.level" value="WARNING"/>
+         <property name="eclipselink.logging.exceptions" value="false"/>
+         <property name="eclipselink.logging.level.sql" value="FINE"/>
+         <property name="eclipselink.logging.parameters" value="true"/>
+         <property name="eclipselink.logging.timestamp" value="false"/>
+         <property name="eclipselink.logging.session" value="false"/>
+      </properties>
+   </persistence-unit>
 </persistence>
