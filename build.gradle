@@ -65,3 +65,8 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
+
+// Attach stdin to gradle run
+run{
+    standardInput = System.in
+}
