@@ -1,7 +1,7 @@
 # Wissenstest (Praktikum zur Lehrveranstaltung Datenbanken 2)
 
 Diese Repository bildet die Grundlage für Ihr Praktikum in Datenbanken 2. Sie werden auf seiner Basis über das gesamte Semester verteilt in mehreren Schritten ein Wissensquiz entwickeln. 
-Zu diesem Zweck werden wir Git und GitLab einsetzten. Sollten Sie mehr informationen und Hilfe zu den beiden Tools benötigen, gucken Sie bitte [hier](readme/gitandgitlab.md).
+Zu diesem Zweck werden wir Git und GitLab einsetzten. Sollten Sie mehr informationen und Hilfe zu den beiden Tools benötigen, klicken Sie bitte [hier](readme/gitandgitlab.md).
 
 in diesem Dokument finden Sie die folgenden Informationen: 
 - [Fachliche Projektbeschreibung](#fachliche-projectbeschreibung)
