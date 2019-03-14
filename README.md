@@ -8,7 +8,7 @@ in diesem Dokument finden Sie die folgenden Informationen:
 - [Technische Projektbeschreibung](#technische-projektbeschreibung)
 - [Hinweis zur Autorenschaft](#hinweis-zur-autorenschaft)
 
-Hier finden Sie nun eine fachliche Projektbeschreibung des zu Implementierden Spiels
+Hier finden Sie nun eine fachliche Projektbeschreibung des zu Implementierende Spiels
 
 # Fachliche Projektbeschreibung
 
@@ -42,11 +42,11 @@ Haben mehrere Spieler das Spiel gespielt, so gibt es die Möglichkeit, Analysen 
 # Technische Projektbeschreibung
 
 ## Projektrahmen
-Im diesem Repository finden Sie einen Projektrahmen, den Sie für die Impelemntierung des gesamten Projektes verwenden sollen. Unter anderem bringt er eine Package-Struktur mit, in die Sie Ihren Code einfügen sollen. Konkret heißt dies, dass alle von Ihnen erzeugten Klassen in `de.hda.fbi.db2.stud` oder von ihnen erstellte Unterordner in dem Package zu erstellen sind. 
+Im diesem Repository finden Sie einen Projektrahmen, den Sie für die Implementierung des gesamten Projektes verwenden sollen. Unter anderem bringt er eine Package-Struktur mit, in die Sie Ihren Code einfügen sollen. Konkret heißt dies, dass alle von Ihnen erzeugten Klassen in `de.hda.fbi.db2.stud` oder von ihnen erstellte Unterordner in dem Package zu erstellen sind. 
 
 Darüber hinaus, bringt der Projektrahmen noch die folgenden Dinge mit: 
 - Gradle Projekt: fertiges Projekt, damit Sie direkt mit der Entwicklung anfangen können. Weitere Informationen zu Gradle finden Sie [hier](https://gradle.org/)
-- Vorberietete JPA Resourcen (z.B. `persistance.xml`)
+- Vorbereitete JPA Ressourcen (z.B. `persistance.xml`)
 - Datenbasis als `csv`-Datei. Die Datei finden Sie im Unterordner `/src/main/resources/Wissenstest_sample200.csv`
 - Parser für die Datenbasis. Sie finden diesen im Package: `de.hda.fbi.db2.tools.CsvDataReader`
 - CI/CD Pipeline (details siehe unten) zum Bauen und Testen Ihres Projektes auf dem GitLab Server
@@ -72,14 +72,14 @@ Die Pipeline verwendet die folgenden zwei Tools:
 
 
 ## Nutzen der Checkstyle und Spotbugs in IntelliJ
-Bevor Sie ihren Code zum GitLab Server pushen, sollten Sie local mit Hilfe von Spotbugs und Checkstyle überprüfen lassen ob die Pipeline Fehler finden wird. Dafür rufen Sie einfach in IntelliJ den Gralde task `build` auf. In der Consolenausgabe werden entsprechende Fehler angezeigt. 
+Bevor Sie ihren Code zum GitLab Server pushen, sollten Sie local mit Hilfe von Spotbugs und Checkstyle überprüfen lassen ob die Pipeline Fehler finden wird. Dafür rufen Sie einfach in IntelliJ den Gradle task `build` auf. In der Konsolenausgabe werden entsprechende Fehler angezeigt. 
 
 Erzeugte Reports finden Sie local im Projekt unter `/build/reports/`.
 
 
-## Konfiguration von IntelliJ zur Verewndung des Google Style Checker
+## Konfiguration von IntelliJ zur Verenndung des Google Style Checker
 IntelliJ verwendet standardmäßig im Editor für Style Checking **nicht** Google's Java Code Style. Dies sollten Sie manuell konfigurieren. Sie tun dies indem Sie die Einstellungen von IntelliJ öffnen (File &rarr; Settings &rarr; Editor &rarr; Code Style) und wählen bei Import Schema (siehe Screenshot) 
-Sie finden die nötige Datei im Projektornder unter: `/readme/intellij-java-google-style.xml`
+Sie finden die nötige Datei im Projektordner unter: `/readme/intellij-java-google-style.xml`
 
 ![IntelliJ Änderung Coding Style](readme/intellij-googlestyleplugin.png)
 
