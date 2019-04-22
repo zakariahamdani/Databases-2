@@ -77,7 +77,7 @@ Bevor Sie ihren Code zum GitLab Server pushen, sollten Sie local mit Hilfe von S
 Erzeugte Reports finden Sie local im Projekt unter `/build/reports/`.
 
 
-## Konfiguration von IntelliJ zur Verenndung des Google Style Checker
+## Konfiguration von IntelliJ zur Verwendung des Google Style Checker
 IntelliJ verwendet standardmäßig im Editor für Style Checking **nicht** Google's Java Code Style. Dies sollten Sie manuell konfigurieren. Sie tun dies indem Sie die Einstellungen von IntelliJ öffnen (File &rarr; Settings &rarr; Editor &rarr; Code Style) und wählen bei Import Schema (siehe Screenshot) 
 Sie finden die nötige Datei im Projektordner unter: `/readme/intellij-java-google-style.xml`
 
