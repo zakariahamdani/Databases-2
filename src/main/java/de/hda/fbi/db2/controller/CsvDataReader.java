@@ -1,4 +1,4 @@
-package de.hda.fbi.db2.tools;
+package de.hda.fbi.db2.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,10 +40,10 @@ public class CsvDataReader {
             fileList = new ArrayList<>();
         } else {
         
-            fileList = Arrays.asList(filenames).stream()
-                .filter(file -> file.isFile())
+            fileList = Arrays.stream(filenames)
+                .filter(File::isFile)
                 .filter(file -> file.getName().endsWith(".csv"))
-                .map(file -> file.getName())
+                .map(File::getName)
                 .collect(Collectors.toList());
         }
         
