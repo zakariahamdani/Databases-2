@@ -82,7 +82,7 @@ Wie oben beschrieben, setzen wir dabei voraus, dass Sie Ihr Projekt in dem von u
 
 Die Pipeline verwendet die folgenden zwei Tools:
 
-- [Checkstyle](http://checkstyle.sourceforge.net/) ist ein Werkzeug zur statischen Code-Analyse zur Prüfung des Programmierstils von Java-Sourcecode. Konkret verwenden wir im Praktikum Google's Java Code Style. Eine Beschreibung können Sie [hier](http://checkstyle.sourceforge.net/google_style.html) finden.
+- [Checkstyle](http://checkstyle.sourceforge.net/) ist ein Werkzeug zur statischen Code-Analyse zur Prüfung des Programmierstils von Java-Sourcecode. Konkret verwenden wir im Praktikum Google's Java Code Style. Eine Beschreibung können Sie [hier](https://google.github.io/styleguide/javaguide.html) bzw. [hier](http://checkstyle.sourceforge.net/google_style.html) finden.
 - [Spotbugs](https://spotbugs.github.io/) such in Java-Programmen nach Fehlermustern. Solche Fehlermuster deuten oft auf tatsächliche Fehler hin.
 
 ## Nutzen der Checkstyle und Spotbugs in IntelliJ
