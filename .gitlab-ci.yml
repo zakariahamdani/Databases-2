@@ -17,7 +17,7 @@ build:
 checkstyle_main:
   stage: check
   script:
-    - ./gradlew check checkstyleMain -x test
+    - ./gradlew checkstyleMain -x test
     - cp build/reports/checkstyle/main.html ./checkstyleMain.html
   artifacts:
     paths:
@@ -27,7 +27,7 @@ checkstyle_main:
 checkstyle_test:
   stage: check
   script:
-    - ./gradlew check checkstyleTest -x test
+    - ./gradlew checkstyleTest -x test
     - cp build/reports/checkstyle/test.html ./checkstyleTest.html
   artifacts:
     paths:
@@ -37,7 +37,7 @@ checkstyle_test:
 spotbugs_main:
   stage: check
   script:
-    - ./gradlew check spotbugsMain -x test
+    - ./gradlew spotbugsMain -x test
     - cp build/reports/spotbugs/main.html ./spotbugsMain.html
   artifacts:
     paths:
@@ -47,7 +47,7 @@ spotbugs_main:
 spotbugs_test:
   stage: check
   script:
-    - ./gradlew check spotbugsTest -x test
+    - ./gradlew spotbugsTest -x test
     - cp build/reports/spotbugs/test.html ./spotbugsTest.html
   artifacts:
     paths:
