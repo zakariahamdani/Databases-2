@@ -50,20 +50,17 @@ task downloadTests() {
     def unzipDir = new File('src/test/java/de/hda/fbi/db2/test')
     def gitURL = 'https://code.fbi.h-da.de/db2-praktikum/base-project/-/archive/master/base-project-master.zip?path=src%2Ftest%2Fjava%2Fde%2Fhda%2Ffbi%2Fdb2%2Ftest'
 
-    def zipFile = new File(unzipDir, 'tests.zip')
-    def myZipTree = zipTree(zipFile)
-
     download {
         src gitURL
-        dest zipFile
+        dest 'tests.zip'
     }
 
     copy {
-        from myZipTree.getFiles()
+        from zipTree('tests.zip').getFiles()
         into unzipDir
     }
 
-    delete zipFile
+    delete 'tests.zip'
 }
 
 
