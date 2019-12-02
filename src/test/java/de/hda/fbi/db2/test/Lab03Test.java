@@ -77,7 +77,6 @@ public class Lab03Test {
     Lab03Game gameController = controller.getLab03Game();
     Lab01Data lab01Data = controller.getLab01Data();
     List<Object> questions = new ArrayList<>();
-    Collections.shuffle(questions);
     questions.add(lab01Data.getQuestions().get(0));
     questions.add(lab01Data.getQuestions().get(1));
     Object game = gameController.createGame("PlayerName", questions);
@@ -94,7 +93,6 @@ public class Lab03Test {
     Lab03Game gameController = controller.getLab03Game();
     Lab01Data lab01Data = controller.getLab01Data();
     List<Object> questions = new ArrayList<>();
-    Collections.shuffle(questions);
     questions.add(lab01Data.getQuestions().get(0));
     questions.add(lab01Data.getQuestions().get(1));
     Object game = gameController.createGame("PlayerName", questions);
@@ -121,7 +119,6 @@ public class Lab03Test {
     Lab03Game gameController = controller.getLab03Game();
     Lab01Data lab01Data = controller.getLab01Data();
     List<Object> questions = new ArrayList<>();
-    Collections.shuffle(questions);
     questions.add(lab01Data.getQuestions().get(0));
     questions.add(lab01Data.getQuestions().get(1));
     Object game = gameController.createGame("PlayerName", questions);
