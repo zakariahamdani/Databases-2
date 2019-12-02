@@ -189,7 +189,13 @@ public class Controller {
       return;
     }
 
-    lab02EntityManager.persistData();
+    String schemaGeneration = (String) lab02EntityManager.getEntityManager().getProperties()
+        .get("javax.persistence.schema-generation.database.action");
+
+    if (schemaGeneration.equals("drop-and-create") ||
+        schemaGeneration.equals("create")) {
+      lab02EntityManager.persistData();
+    }
     isPersisted = true;
   }
 
