@@ -1,4 +1,4 @@
-image: openjdk:alpine
+image: openjdk:12-alpine
 
 before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
