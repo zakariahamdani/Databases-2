@@ -16,14 +16,14 @@ public abstract class Lab01Data {
      *
      * @return questions
      */
-    public abstract List<Object> getQuestions();
+    public abstract List<?> getQuestions();
 
     /**
      * Return all categories.
      *
      * @return categories
      */
-    public abstract List<Object> getCategories();
+    public abstract List<?> getCategories();
 
     /**
      * Save the csv data in appropriate objects.
