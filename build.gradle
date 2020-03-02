@@ -33,7 +33,7 @@ tasks.withType(com.github.spotbugs.SpotBugsTask) {
 }
 
 checkstyle {
-    toolVersion "7.6.1"
+    toolVersion "8.29"
     //configFile file("config/checkstyle/wso2_checks.xml")
     //configFile file("config/checkstyle/sun_checks.xml")
     configFile file("config/checkstyle/google_checks.xml")
@@ -46,6 +46,7 @@ tasks.withType(Checkstyle) {
     }
 }
 
+/*
 task downloadTests() {
     def unzipDir = new File('src/test/java/de/hda/fbi/db2/test')
     def gitURL = 'https://code.fbi.h-da.de/db2-praktikum/base-project/-/archive/master/base-project-master.zip?path=src%2Ftest%2Fjava%2Fde%2Fhda%2Ffbi%2Fdb2%2Ftest'
@@ -62,6 +63,7 @@ task downloadTests() {
 
     delete 'tests.zip'
 }
+ */
 
 
 
