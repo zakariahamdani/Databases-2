@@ -9,6 +9,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.Type;
 import org.eclipse.persistence.internal.jpa.metamodel.AttributeImpl;
 import org.eclipse.persistence.internal.jpa.metamodel.EntityTypeImpl;
+import org.eclipse.persistence.internal.jpa.metamodel.SingularAttributeImpl;
 import org.eclipse.persistence.mappings.AggregateCollectionMapping;
 import org.eclipse.persistence.mappings.DatabaseMapping;
 import org.eclipse.persistence.mappings.DirectCollectionMapping;
@@ -289,5 +290,33 @@ public class Lab02Test {
         Assert.fail("Could not find hashCode method in answer entity");
       }
     }
+  }
+
+  @Test
+  public void test9CategoryNameUnique() {
+    if (metaData == null) {
+      Assert.fail("No MetaModel");
+    }
+
+    if (categoryEntity == null) {
+      Assert.fail("Could not find categoryEntity");
+    }
+
+    for (Object member : categoryEntity.getAttributes()) {
+      System.out.println();
+      try {
+        String name = ((SingularAttributeImpl) member).getName();
+        if (name.equals("name")) {
+          boolean isUnique = ((SingularAttributeImpl) member).getMapping().getField().isUnique();
+          if (!isUnique) {
+            Assert.fail("Name in Category is not unique");
+          } else {
+            return;
+          }
+        }
+      } catch (Exception ignored) {
+      }
+    }
+    Assert.fail("Could not find name in category");
   }
 }
