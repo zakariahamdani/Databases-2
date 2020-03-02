@@ -1,8 +1,8 @@
 image: openjdk:12-alpine
 
 before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
-    - chmod +x ./gradlew
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  - chmod +x ./gradlew
 
 
 stages:
@@ -21,7 +21,7 @@ checkstyle_main:
     - cp build/reports/checkstyle/main.html ./checkstyleMain.html
   artifacts:
     paths:
-    - checkstyleMain.html
+      - checkstyleMain.html
     expire_in: 1 week
 
 checkstyle_test:
@@ -31,7 +31,7 @@ checkstyle_test:
     - cp build/reports/checkstyle/test.html ./checkstyleTest.html
   artifacts:
     paths:
-    - checkstyleTest.html
+      - checkstyleTest.html
     expire_in: 1 week
 
 spotbugs_main:
@@ -41,7 +41,7 @@ spotbugs_main:
     - cp build/reports/spotbugs/main.html ./spotbugsMain.html
   artifacts:
     paths:
-    - spotbugsMain.html
+      - spotbugsMain.html
     expire_in: 1 week
 
 spotbugs_test:
@@ -51,5 +51,5 @@ spotbugs_test:
     - cp build/reports/spotbugs/test.html ./spotbugsTest.html
   artifacts:
     paths:
-    - spotbugsTest.html
+      - spotbugsTest.html
     expire_in: 1 week

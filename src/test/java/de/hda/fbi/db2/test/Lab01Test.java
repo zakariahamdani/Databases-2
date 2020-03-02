@@ -2,12 +2,12 @@ package de.hda.fbi.db2.test;
 
 import static org.junit.Assert.assertEquals;
 
+import de.hda.fbi.db2.controller.Controller;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import de.hda.fbi.db2.controller.Controller;
 
 /**
  * Created by l.koehler on 05.08.2019.
@@ -17,6 +17,9 @@ public class Lab01Test {
 
   private static Controller controller;
 
+  /**
+   * Lab01Test init.
+   */
   @BeforeClass
   public static void init() {
     controller = Controller.getInstance();

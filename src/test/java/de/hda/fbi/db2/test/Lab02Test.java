@@ -52,6 +52,9 @@ public class Lab02Test {
     Lab02Test.answerEntity = answerEntity;
   }
 
+  /**
+   * Lab02Test init.
+   */
   @BeforeClass
   public static void init() {
     controller = Controller.getInstance();
@@ -181,7 +184,7 @@ public class Lab02Test {
           return;
         }
       } catch (Exception ignored) {
-
+        //This is expected
       }
     }
 
@@ -315,6 +318,7 @@ public class Lab02Test {
           }
         }
       } catch (Exception ignored) {
+        //This is expected
       }
     }
     Assert.fail("Could not find name in category");

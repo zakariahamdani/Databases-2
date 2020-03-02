@@ -1,5 +1,9 @@
 package de.hda.fbi.db2.controller;
 
+import de.hda.fbi.db2.api.Lab01Data;
+import de.hda.fbi.db2.api.Lab02EntityManager;
+import de.hda.fbi.db2.api.Lab03Game;
+import de.hda.fbi.db2.api.Lab04MassData;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -7,10 +11,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import de.hda.fbi.db2.api.Lab01Data;
-import de.hda.fbi.db2.api.Lab02EntityManager;
-import de.hda.fbi.db2.api.Lab03Game;
-import de.hda.fbi.db2.api.Lab04MassData;
 
 /**
  * Controller Created by l.koehler on 05.08.2019.
@@ -19,6 +19,11 @@ public class Controller {
 
   private static Controller controller;
 
+  /**
+   * Singleton Pattern.
+   *
+   * @return a singleton Pattern instance
+   */
   public static synchronized Controller getInstance() {
     if (controller == null) {
       controller = new Controller();
@@ -46,6 +51,7 @@ public class Controller {
     findImplementations();
   }
 
+  @SuppressWarnings("deprecation")
   private void findImplementations() {
     try {
       Enumeration<URL> elements = Thread.currentThread().getContextClassLoader()
@@ -123,6 +129,9 @@ public class Controller {
     return classes;
   }
 
+  /**
+   * reads the csv data.
+   */
   public void readCsv() {
     if (lab01Data == null) {
       System.err.println("Could not find Lab01Data Implementation");
@@ -156,6 +165,9 @@ public class Controller {
     return lab04MassData;
   }
 
+  /**
+   * starts the main menu.
+   */
   public void startMenu() {
     if (lab01Data == null) {
       System.err.println("Could not find Lab01Data Implementation");
@@ -178,6 +190,9 @@ public class Controller {
     menuController.showMenu();
   }
 
+  /**
+   * persist data.
+   */
   public void persistData() {
     if (lab01Data == null) {
       System.err.println("Could not find Lab01Data Implementation");
@@ -192,8 +207,7 @@ public class Controller {
     String schemaGeneration = (String) lab02EntityManager.getEntityManager().getProperties()
         .get("javax.persistence.schema-generation.database.action");
 
-    if (schemaGeneration.equals("drop-and-create") ||
-        schemaGeneration.equals("create")) {
+    if (schemaGeneration.equals("drop-and-create") || schemaGeneration.equals("create")) {
       lab02EntityManager.persistData();
     }
     isPersisted = true;
@@ -207,6 +221,9 @@ public class Controller {
     return isPersisted;
   }
 
+  /**
+   * creates massdata.
+   */
   public void createMassData() {
     if (lab01Data == null) {
       System.err.println("Could not find Lab01Data Implementation");

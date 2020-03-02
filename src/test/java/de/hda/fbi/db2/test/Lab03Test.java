@@ -1,5 +1,8 @@
 package de.hda.fbi.db2.test;
 
+import de.hda.fbi.db2.api.Lab01Data;
+import de.hda.fbi.db2.api.Lab03Game;
+import de.hda.fbi.db2.controller.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.metamodel.Attribute;
@@ -14,9 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import de.hda.fbi.db2.api.Lab01Data;
-import de.hda.fbi.db2.api.Lab03Game;
-import de.hda.fbi.db2.controller.Controller;
 
 /**
  * Created by l.koehler on 05.08.2019.
@@ -34,6 +34,9 @@ public class Lab03Test {
     Lab03Test.gameEntity = gameEntity;
   }
 
+  /**
+   * Lab03Test init.
+   */
   @BeforeClass
   public static void init() {
     controller = Controller.getInstance();
@@ -164,8 +167,8 @@ public class Lab03Test {
     }
 
     for (EmbeddableType embeddable : metaData.getEmbeddables()) {
-      if (embeddable.getJavaType().getSimpleName().toLowerCase().equals("answer") ||
-          embeddable.getJavaType().getSimpleName().toLowerCase().equals("answers")) {
+      if (embeddable.getJavaType().getSimpleName().toLowerCase().equals("answer")
+          || embeddable.getJavaType().getSimpleName().toLowerCase().equals("answers")) {
         answerEntity = embeddable;
       }
     }
@@ -185,6 +188,7 @@ public class Lab03Test {
           correct = true;
         }
       } catch (Exception ignored) {
+        //This is expected
       }
     }
 
