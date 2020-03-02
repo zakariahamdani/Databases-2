@@ -1,18 +1,18 @@
 package de.hda.fbi.db2.test;
 
+import de.hda.fbi.db2.controller.Controller;
 import java.lang.reflect.Method;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.PluralAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.Type;
-import de.hda.fbi.db2.controller.Controller;
 import org.eclipse.persistence.internal.jpa.metamodel.AttributeImpl;
 import org.eclipse.persistence.internal.jpa.metamodel.EntityTypeImpl;
 import org.eclipse.persistence.mappings.AggregateCollectionMapping;
 import org.eclipse.persistence.mappings.DatabaseMapping;
+import org.eclipse.persistence.mappings.DirectCollectionMapping;
 import org.eclipse.persistence.mappings.DirectMapMapping;
-import org.eclipse.persistence.mappings.OneToManyMapping;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -120,22 +120,6 @@ public class Lab02Test {
       Assert.fail("No MetaModel");
     }
 
-    for (EntityType current : metaData.getEntities()) {
-      if (current.getName().toLowerCase().equals("answer")) {
-        setAnswerEntity((EntityTypeImpl) current);
-        for (Object member : questionEntity.getAttributes()) {
-          try {
-            Type type = ((PluralAttribute) member).getElementType();
-            if (type == answerEntity) {
-              return;
-            }
-          } catch (Exception ignored) {
-
-          }
-        }
-      }
-    }
-
     if (questionEntity == null) {
       Assert.fail("Could not find questionEntity");
     }
@@ -144,10 +128,11 @@ public class Lab02Test {
       DatabaseMapping mapping = ((AttributeImpl) member).getMapping();
       if (mapping instanceof DirectMapMapping) {
         return;
-      } else if (mapping instanceof OneToManyMapping) {
-        return;
       }
       if (mapping instanceof AggregateCollectionMapping) {
+        return;
+      }
+      if (mapping instanceof DirectCollectionMapping) {
         return;
       }
     }
