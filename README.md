@@ -24,7 +24,7 @@ Zu jeder Frage gibt es genau vier Antworten, von denen genau eine richtig ist un
 
 Jede Frage gehört zu genau einer Kategorie.
 
-Eine Basis von Kategorien, Fragen und Antworten als Stammdaten wird in einer entsprechenden `csv`-Datei zur Verfügung gestellt. Die `csv`-Datei finden Sie im Unterordner `/src/main/resources/`. Sie trägt den Namen: `Wissenstest_sample200.csv`.
+Eine Basis von Kategorien, Fragen und Antworten als Stammdaten wird in einer entsprechenden `csv`-Datei zur Verfügung gestellt. Die `csv`-Datei finden Sie im Unterordner `/src/main/resources/`. Sie trägt den Namen: `Wissenstest_sample200.csv`. Hier kann sie direkt gefunden werden: [Link](/src/main/resources/Wissenstest_sample200.csv)
 
 ## Spielbeschreibung
 
