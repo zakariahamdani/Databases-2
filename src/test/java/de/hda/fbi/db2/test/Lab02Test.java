@@ -241,6 +241,12 @@ public class Lab02Test {
         Assert.fail("Could not find equals method in answer entity");
       }
     }
+
+    Object question1 = controller.getLab01Data().getQuestions().get(0);
+    Object question2 = controller.getLab01Data().getQuestions().get(1);
+    if (question1.equals(question2)) {
+      Assert.fail("Two different questions should be equal");
+    }
   }
 
   @Test
