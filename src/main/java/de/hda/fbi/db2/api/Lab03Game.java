@@ -22,7 +22,7 @@ public abstract class Lab03Game {
   protected Lab02EntityManager lab02EntityManager;
 
   /**
-   * Setter for Lab01Data.
+   * Setter for Lab01Data. Do not touch this method.
    *
    * @param lab01Data lab01Data
    */
@@ -31,7 +31,7 @@ public abstract class Lab03Game {
   }
 
   /**
-   * Setter fro Lab02EntityManager.
+   * Setter fro Lab02EntityManager. Do not touch this method.
    *
    * @param lab02EntityManager lab02EntityManager
    */
@@ -40,68 +40,113 @@ public abstract class Lab03Game {
   }
 
   /**
-   * This method should create a game. For this you have to do the following things: - Ask for
-   * player - Ask for categories - Ask for maximum questions per category and choose questions
+   * Creates a new Player or retrieves it from the database.
+   * <p>
+   * This function shall try to retrieve the player with the given name playerName from the
+   * database. If no such player exists, it shall be created as a Java Object. It is not necessary
+   * to persist the Player yet.
+   * </p>
    *
-   * <p>You do not have to play the game here. This should only create a game
+   * <p>This function is primarily used for testing. There exists a version with user interaction
+   * which shall be used from the menu
+   * </p>
    *
-   * @return the game entity object. IMPORTANT: This has to be a entity.
+   * @param playerName The name for the new Player.
+   * @return Player object which was created or retrieved.
+   * @see Lab03Game#interactiveGetOrCreatePlayer()
    */
-  public abstract Object createGame();
+  public abstract Object getOrCreatePlayer(String playerName);
 
   /**
-   * This should create a game with the given arguments. You do not have to read data from console.
-   * The game should be create only with the given arguments. You do not have to play the game
-   * here.
+   * Creates a new Player or retrieves it from the database (interactive version).
    *
-   * @param playerName name of the player
-   * @param questions  chosen questions
-   * @return a game object
+   * <p>
+   * This function shall ask the user for a player name, and then shall try to retrieve such a
+   * player from the database. If no such player exists, it shall be created as a Java Object. It is
+   * not necessary to persist the player yet.
+   * </p>
+   *
+   * <p>This function is primarily used for user interaction. There exists a version used for
+   * testing, @see getOrCreatePlayer</p>
+   *
+   * @return Player object which was created or retrieved.
+   * @see Lab03Game#getOrCreatePlayer(String)
    */
-  public abstract Object createGame(String playerName, List<Object> questions);
+  public abstract Object interactiveGetOrCreatePlayer();
 
   /**
-   * Here you have to play the game 'game'.
+   * This function shall generate a random list of questions which are from the given categories.
    *
-   * @param game the game that should be played
+   * <p>Per category there shall be a certain amount of questions chosen. If a category hosts less
+   * questions than that amount, then all of the questions shall be chosen. Questions shall be
+   * randomly selected.
+   * </p>
+   *
+   * <p>There is also an interactive version of this function which asks the user for categories
+   * instead of randomly selecting them.</p>
+   *
+   * @param categories                   A list of categories to select questions from
+   * @param amountOfQuestionsForCategory The amount of questions per category. If a category has
+   *                                     less than this amount, then all questions of that category
+   *                                     shall be selected.
+   * @return A List of randomly chosen Questions from the given Categories.
+   * @see Lab03Game#interactiveGetQuestions()
+   */
+  public abstract List<?> getQuestions(List<?> categories, int amountOfQuestionsForCategory);
+
+  /**
+   * This function shall generate a random list of questions after asking the user for categories.
+   *
+   * <p>In this function, ask the user for categories and the number of questions per category.
+   * Then, randomly select questions from those categories. Choose as many questions per category as
+   * were entered, as long as the category has that many questions. If there are fewer questions,
+   * then select all of them.</p>
+   *
+   * @return A List of randomly chosen Questions from categories which the user entered.
+   * @see Lab03Game#getQuestions(List, int)
+   */
+  public abstract List<?> interactiveGetQuestions();
+
+  /**
+   * This function creates a Game Object with the given player and questions, but without playing
+   * the game yet.
+   *
+   * <p>It is important that you neither play the game yet nor persist the game! This is just meant
+   * to create the game object.</p>
+   *
+   * @param player    The Player which shall play the game.
+   * @param questions The Questions which shall be asked during the game.
+   * @return A Game Object which contains an unplayed game
+   *     for the given player with the given questions.
+   */
+  public abstract Object createGame(Object player, List<?> questions);
+
+  /**
+   * This function simulates a game play without user interaction by randomly choosing answers.
+   *
+   * <p>There is also an interactive version of this function which shall be called from the menu.
+   * </p>
+   *
+   * @param game The Game Object which shall be played.
+   * @see Lab03Game#interactivePlayGame(Object)
    */
   public abstract void playGame(Object game);
 
   /**
-   * Simulate a game play. You do not have to read anything from console.
+   * This function plays the given game with the user, that is by using user interaction.
    *
-   * @param game given game
+   * <p>This is the function that should be called from the menu. Here you can implement the
+   * necessary user interaction for the playing of the game.</p>
+   *
+   * @param game The Game Object which shall be played.
+   * @see Lab03Game#playGame(Object)
    */
-  public abstract void simulateGame(Object game);
+  public abstract void interactivePlayGame(Object game);
 
   /**
-   * This should return the appropriate player for the given game.
+   * Persists a played game, including the player which played it.
    *
-   * @param game given game for returning player
-   * @return player for given game
-   */
-  public abstract Object getPlayer(Object game);
-
-  /**
-   * Return the player entity with given name.
-   *
-   * @param name name of the player
-   * @return the player entity
-   */
-  public abstract Object getPlayer(String name);
-
-  /**
-   * return the right answers of a played game.
-   *
-   * @param game given game
-   * @return number of right answers
-   */
-  public abstract int getRightAnswers(Object game);
-
-  /**
-   * persist the game object in the database.
-   *
-   * @param game given game
+   * @param game The Game Object to be persisted.
    */
   public abstract void persistGame(Object game);
 }

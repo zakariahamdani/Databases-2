@@ -4,6 +4,7 @@ import de.hda.fbi.db2.api.Lab03Game;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * MenuController Created by l.koehler on 05.08.2019.
@@ -76,8 +77,10 @@ public class MenuController {
 
   private void playTest() {
     Lab03Game gameController = controller.getLab03Game();
-    Object game = gameController.createGame();
-    gameController.playGame(game);
+    Object player = gameController.interactiveGetOrCreatePlayer();
+    List<?> questions = gameController.interactiveGetQuestions();
+    Object game = gameController.createGame(player, questions);
+    gameController.interactivePlayGame(game);
     gameController.persistGame(game);
   }
 

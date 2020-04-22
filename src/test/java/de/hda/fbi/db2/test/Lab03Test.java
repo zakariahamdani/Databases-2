@@ -5,13 +5,8 @@ import de.hda.fbi.db2.api.Lab03Game;
 import de.hda.fbi.db2.controller.Controller;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.metamodel.Attribute;
-import javax.persistence.metamodel.EmbeddableType;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
-import javax.persistence.metamodel.PluralAttribute;
-import javax.persistence.metamodel.Type;
-import org.eclipse.persistence.internal.jpa.metamodel.EntityTypeImpl;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -79,11 +74,13 @@ public class Lab03Test {
 
     Lab03Game gameController = controller.getLab03Game();
     Lab01Data lab01Data = controller.getLab01Data();
-    List<Object> questions = new ArrayList<>();
-    questions.add(lab01Data.getQuestions().get(0));
-    questions.add(lab01Data.getQuestions().get(1));
-    Object game = gameController.createGame("PlayerName", questions);
-    gameController.simulateGame(game);
+    List<Object> categories = new ArrayList<>();
+    categories.add(lab01Data.getCategories().get(0));
+    categories.add(lab01Data.getCategories().get(1));
+    List<?> questions = gameController.getQuestions(categories, 2);
+    Object player = gameController.getOrCreatePlayer("PlayerName");
+    Object game = gameController.createGame(player, questions);
+    gameController.playGame(game);
     gameController.persistGame(game);
   }
 
@@ -95,10 +92,12 @@ public class Lab03Test {
 
     Lab03Game gameController = controller.getLab03Game();
     Lab01Data lab01Data = controller.getLab01Data();
-    List<Object> questions = new ArrayList<>();
-    questions.add(lab01Data.getQuestions().get(0));
-    questions.add(lab01Data.getQuestions().get(1));
-    Object game = gameController.createGame("PlayerName", questions);
+    List<Object> categories = new ArrayList<>();
+    categories.add(lab01Data.getCategories().get(0));
+    categories.add(lab01Data.getCategories().get(1));
+    List<?> questions = gameController.getQuestions(categories, 2);
+    Object player = gameController.getOrCreatePlayer("PlayerName");
+    Object game = gameController.createGame(player, questions);
 
     boolean gameFound = false;
     for (EntityType<?> clazzes : metaData.getEntities()) {
@@ -120,12 +119,7 @@ public class Lab03Test {
     }
 
     Lab03Game gameController = controller.getLab03Game();
-    Lab01Data lab01Data = controller.getLab01Data();
-    List<Object> questions = new ArrayList<>();
-    questions.add(lab01Data.getQuestions().get(0));
-    questions.add(lab01Data.getQuestions().get(1));
-    Object game = gameController.createGame("PlayerName", questions);
-    Object player = gameController.getPlayer(game);
+    Object player = gameController.getOrCreatePlayer("PlayerName");
 
     boolean playerFound = false;
     for (EntityType<?> clazzes : metaData.getEntities()) {
@@ -136,64 +130,6 @@ public class Lab03Test {
 
     if (!playerFound) {
       Assert.fail("Could not find player class as entity");
-    }
-  }
-
-  @Test
-  public void test4FindReferences() {
-    if (metaData == null) {
-      Assert.fail("No MetaModel");
-    }
-
-    if (gameEntity == null) {
-      Assert.fail("No GameEntity found");
-    }
-
-    EntityTypeImpl questionEntity = null;
-    for (EntityType current : metaData.getEntities()) {
-      if (current.getName().toLowerCase().equals("question")) {
-        questionEntity = (EntityTypeImpl) current;
-      }
-    }
-    if (questionEntity == null) {
-      Assert.fail("No Question Entity found");
-    }
-
-    Type answerEntity = null;
-    for (EntityType current : metaData.getEntities()) {
-      if (current.getName().toLowerCase().equals("answer")) {
-        answerEntity = (EntityTypeImpl) current;
-      }
-    }
-
-    for (EmbeddableType embeddable : metaData.getEmbeddables()) {
-      if (embeddable.getJavaType().getSimpleName().toLowerCase().equals("answer")
-          || embeddable.getJavaType().getSimpleName().toLowerCase().equals("answers")) {
-        answerEntity = embeddable;
-      }
-    }
-
-    if (answerEntity == null) {
-      Assert.fail("No Answer Entity found");
-    }
-
-    boolean correct = false;
-    for (Attribute attr : gameEntity.getAttributes()) {
-      try {
-        PluralAttribute plrAttr = (PluralAttribute) attr;
-        if (plrAttr.getElementType().getJavaType() == questionEntity.getJavaType()) {
-          correct = true;
-        }
-        if (plrAttr.getElementType().getJavaType() == answerEntity.getJavaType()) {
-          correct = true;
-        }
-      } catch (Exception ignored) {
-        //This is expected
-      }
-    }
-
-    if (!correct) {
-      Assert.fail("Could not find any right answer or question reference in game");
     }
   }
 }
