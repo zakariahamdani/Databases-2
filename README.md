@@ -65,7 +65,7 @@ Weiter Hinweise wie sie das Projekt bei sich Lokal clonen und in IntelliJ verwen
 
 ## Benötigte Software für die Arbeit mit Git bzw. GitLab
 
-Sie benötigen für dieses Praktikum die [IDE IntelliJ](https://www.jetbrains.com/idea/) IDE mit [Gradle-Plugin](https://docs.gradle.org/current/userguide/idea_plugin.html) (automatisch Teil von IntelliJ) und JDK12
+Sie benötigen für dieses Praktikum die [IDE IntelliJ](https://www.jetbrains.com/idea/) IDE mit [Gradle-Plugin](https://docs.gradle.org/current/userguide/idea_plugin.html) (automatisch Teil von IntelliJ) und JDK11
 
 - Für IntelliJ ist **vorab** eine kostenlose Registrierung als Student notwendig.
 - Andere IDEs sind möglich, werden im Praktikum aber nicht unterstützt.
