@@ -25,8 +25,6 @@
             <property name="eclipselink.logging.parameters" value="true"/>
             <property name="eclipselink.logging.timestamp" value="false"/>
             <property name="eclipselink.logging.session" value="false"/>
-            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
-            <property name="eclipselink.jdbc.batch-writing.size" value="1000"/>
         </properties>
     </persistence-unit>
 
@@ -52,8 +50,6 @@
             <property name="eclipselink.logging.parameters" value="true"/>
             <property name="eclipselink.logging.timestamp" value="false"/>
             <property name="eclipselink.logging.session" value="false"/>
-            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
-            <property name="eclipselink.jdbc.batch-writing.size" value="1000"/>
         </properties>
     </persistence-unit>
 
@@ -79,8 +75,6 @@
             <property name="eclipselink.logging.parameters" value="true"/>
             <property name="eclipselink.logging.timestamp" value="false"/>
             <property name="eclipselink.logging.session" value="false"/>
-            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
-            <property name="eclipselink.jdbc.batch-writing.size" value="1000"/>
         </properties>
     </persistence-unit>
 
