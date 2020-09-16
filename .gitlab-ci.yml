@@ -1,11 +1,13 @@
-image: openjdk:11
+image: registry.code.fbi.h-da.de/db2-praktikum/base-project/dependency_image:latest
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
   - chmod +x ./gradlew
-
+  - cp -r /dependencies/.gradle ./
+  - cp -r /dependencies/build ./
 
 stages:
+  - create_dependency_image
   - build
   - check
 
@@ -53,3 +55,16 @@ spotbugs_test:
     paths:
       - spotbugsTest.html
     expire_in: 1 week
+
+
+# create_dependency_image:
+#   stage: create_dependency_image
+#   image:
+#     name: gcr.io/kaniko-project/executor:debug
+#     entrypoint: [""]
+#   script:
+#     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+#     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/docker/dependencyImage/Dockerfile --destination $CI_REGISTRY_IMAGE/dependency_image:latest
+#   when: manual
+#   only:
+#     - dependencyImage
