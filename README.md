@@ -1,15 +1,15 @@
 # Wissenstest (Praktikum zur Lehrveranstaltung Datenbanken 2)
 
-Diese Repository bildet die Grundlage für Ihr Praktikum in Datenbanken 2. Sie werden auf seiner Basis über das gesamte Semester verteilt in mehreren Schritten ein Wissensquiz entwickeln.
-Zu diesem Zweck werden wir Git und GitLab einsetzten. Sollten Sie mehr informationen und Hilfe zu den beiden Tools benötigen, klicken Sie bitte [hier](readme/gitandgitlab.md).
+Dieses Repository bildet die Grundlage für Ihr Praktikum in Datenbanken 2. Sie werden auf seiner Basis über das gesamte Semester verteilt in mehreren Schritten ein Wissensquiz entwickeln.
+Zu diesem Zweck werden wir Git und GitLab einsetzten. Sollten Sie mehr Informationen und Hilfe zu den beiden Tools benötigen, klicken Sie bitte [hier](readme/gitandgitlab.md).
 
-in diesem Dokument finden Sie die folgenden Informationen:
+In diesem Dokument finden Sie die folgenden Informationen:
 
 - [Fachliche Projektbeschreibung](#fachliche-projectbeschreibung)
 - [Technische Projektbeschreibung](#technische-projektbeschreibung)
 - [Hinweis zur Autorenschaft](#hinweis-zur-autorenschaft)
 
-Hier finden Sie nun eine fachliche Projektbeschreibung des zu Implementierende Spiels
+Hier finden Sie nun eine fachliche Projektbeschreibung des zu Implementierenden Spiels
 
 # Fachliche Projektbeschreibung
 
@@ -55,17 +55,17 @@ In der Klasse `Main`, müssen Sie für jeweilige Praktika gegebenenfalls Codezei
 
 Darüber hinaus, bringt der Projektrahmen noch die folgenden Dinge mit:
 
-- Gradle Projekt: fertiges Projekt, damit Sie direkt mit der Entwicklung anfangen können. Weitere Informationen zu Gradle finden Sie [hier](https://gradle.org/)
+- Gradle Projekt: Fertiges Projekt, damit Sie direkt mit der Entwicklung anfangen können. Weitere Informationen zu Gradle finden Sie [hier](https://gradle.org/)
 - Vorbereitete JPA Ressourcen (z.B. `persistance.xml`)
 - Datenbasis als `csv`-Datei. Die Datei finden Sie im Unterordner `/src/main/resources/Wissenstest_sample200.csv`
 - Parser für die Datenbasis. Sie finden diesen im Package: `de.hda.fbi.db2.controller.CsvDataReader`
 - CI/CD Pipeline (details siehe unten) zum Bauen und Testen Ihres Projektes auf dem GitLab Server
 
-Weiter Hinweise wie sie das Projekt bei sich Lokal clonen und in IntelliJ verwenden finden sie [hier](readme/gitandgitlab.md)
+Weitere Hinweise wie sie das Projekt bei sich Lokal clonen und in IntelliJ verwenden finden sie [hier](readme/gitandgitlab.md)
 
 ## Benötigte Software für die Arbeit mit Git bzw. GitLab
 
-Sie benötigen für dieses Praktikum die [IDE IntelliJ](https://www.jetbrains.com/idea/) IDE mit [Gradle-Plugin](https://docs.gradle.org/current/userguide/idea_plugin.html) (automatisch Teil von IntelliJ) und JDK11
+Sie benötigen für dieses Praktikum die [IDE IntelliJ](https://www.jetbrains.com/idea/) mit [Gradle-Plugin](https://docs.gradle.org/current/userguide/idea_plugin.html) (automatisch Teil von IntelliJ) und JDK11
 
 - Für IntelliJ ist **vorab** eine kostenlose Registrierung als Student notwendig.
 - Andere IDEs sind möglich, werden im Praktikum aber nicht unterstützt.
@@ -77,7 +77,7 @@ Wir empfehlen, zusätzlich zum in IntelliJ integrierten Git-Client die Software 
 
 ## Continuous Integration Pipeline
 
-Der GitLab Server führt automatisch Builds und Tests Ihrer Commits durch. Damit können Sie und wir schon im Vorfeld prüfen, ob Ihr aktueller Stand den Anforderungen entspricht.
+Der GitLab-Server führt automatisch Builds und Tests Ihrer Commits durch. Damit können Sie und wir schon im Vorfeld prüfen, ob Ihr aktueller Stand den Anforderungen entspricht.
 Wie oben beschrieben, setzen wir dabei voraus, dass Sie Ihr Projekt in dem von uns vorgesehenem Package entwickeln: `de.hda.fbi.db2.stud`. Wenn Sie sich nicht an diese Anforderung halten, erhalten Sie kein Testat! Den Stand Ihrer Builds und Tests können Sie links in Ihrem Repository über das Menu "CI/CD" &rarr; "Pipelines" abrufen.
 
 Die Pipeline verwendet die folgenden zwei Tools:
@@ -87,13 +87,13 @@ Die Pipeline verwendet die folgenden zwei Tools:
 
 ## Nutzen der Checkstyle und Spotbugs in IntelliJ
 
-Bevor Sie ihren Code zum GitLab Server pushen, sollten Sie local mit Hilfe von Spotbugs und Checkstyle überprüfen lassen ob die Pipeline Fehler finden wird. Dafür rufen Sie einfach in IntelliJ den Gradle task `build` auf. In der Konsolenausgabe werden entsprechende Fehler angezeigt.
+Bevor Sie ihren Code zum GitLab-Server pushen, sollten Sie local mit Hilfe von Spotbugs und Checkstyle überprüfen lassen ob die Pipeline Fehler finden wird. Dafür rufen Sie einfach in IntelliJ den Gradle task `build` auf. In der Konsolenausgabe werden entsprechende Fehler angezeigt.
 
-Erzeugte Reports finden Sie local im Projekt unter `/build/reports/`.
+Erzeugte Reports finden Sie lokal im Projekt unter `/build/reports/`.
 
 ## Konfiguration von IntelliJ zur Verwendung des Google Style Checker
 
-IntelliJ verwendet standardmäßig im Editor für Style Checking **nicht** Google's Java Code Style. Dies sollten Sie manuell konfigurieren. Sie tun dies indem Sie die Einstellungen von IntelliJ öffnen (File &rarr; Settings &rarr; Editor &rarr; Code Style) und wählen bei Import Schema (siehe Screenshot)
+IntelliJ verwendet standardmäßig im Editor für Style Checking **nicht** Google's Java Code Style. Dies sollten Sie manuell konfigurieren. Sie tun dies, indem Sie die Einstellungen von IntelliJ öffnen (File &rarr; Settings &rarr; Editor &rarr; Code Style) und wählen bei Import Schema (siehe Screenshot)
 Sie finden die nötige Datei im Projektordner unter: `/readme/intellij-java-google-style.xml`
 
 ![IntelliJ Änderung Coding Style](readme/intellij-googlestyleplugin.png)
