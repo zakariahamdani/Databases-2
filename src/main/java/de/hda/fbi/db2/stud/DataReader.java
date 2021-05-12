@@ -1,0 +1,103 @@
+package de.hda.fbi.db2.stud;
+
+import de.hda.fbi.db2.api.Lab01Data;
+import de.hda.fbi.db2.stud.entity.Categorie;
+import de.hda.fbi.db2.stud.entity.Question;
+
+import java.security.cert.CertificateRevokedException;
+import java.util.*;
+
+public class DataReader extends Lab01Data {
+
+    private List<Question> questions = new ArrayList<Question>();
+    private List<Categorie> categories = new ArrayList<Categorie>();
+
+    public boolean categorieExists(String name) {
+        for (Categorie categorie : categories) {
+            if (categorie.getName().contentEquals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Categorie getCategorie(String name){
+        for (Categorie categorie : categories) {
+            if (categorie.getName().contentEquals(name)) {
+                return categorie;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<?> getQuestions() {
+        return null;
+    }
+
+    @Override
+    public List<?> getCategories() {
+        return null;
+    }
+
+    @Override
+    public void loadCsvFile(List<String[]> additionalCsvLines) {
+
+        additionalCsvLines.remove(0);
+
+        int id, rightAnswear;
+        String question, categorie;
+
+
+        for (String[] line : additionalCsvLines) {
+
+            List<String> answears = new ArrayList<String>();
+
+            id = Integer.parseInt(line[0]);
+
+            question = line[1];
+
+            answears.add(line[2]);
+            answears.add(line[3]);
+            answears.add(line[4]);
+            answears.add(line[5]);
+
+            rightAnswear = Integer.parseInt(line[6]);
+
+            categorie = line[7];
+            if (!this.categorieExists(categorie)) {
+                Categorie tmpCategorie = new Categorie(categorie);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear,tmpCategorie);
+                tmpCategorie.getQuestions().add(tmpQuestion);
+                questions.add(tmpQuestion);
+                categories.add(tmpCategorie);
+            }
+            else
+            {
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear,  this.getCategorie(categorie));
+                this.getCategorie(categorie).getQuestions().add(tmpQuestion);
+                questions.add(tmpQuestion);
+            }
+        }
+
+        for (Categorie a : categories) {
+            System.out.println("Categorie: " + a.getName());
+
+            for (Question cQuestion : a.getQuestions()){
+                System.out.println("-----------------------------------");
+                System.out.println("QUESTION: " + cQuestion.getQuestion());
+
+                System.out.println("CHOISES:");
+
+                for (String possibleAnswear : cQuestion.getPossibleAnswears()){
+                    System.out.println("# " + possibleAnswear);
+                }
+
+                System.out.println("==> RIGHT ANSWEAR '" + cQuestion.getIndexRightAnswear() + "': " + cQuestion.getRightAnswear());
+            }
+            System.out.println("********************************************************");
+        }
+        System.out.println("number of categories: " + categories.size());
+        System.out.println("number of Questions: " + questions.size());
+    }
+}
