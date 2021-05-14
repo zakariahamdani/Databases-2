@@ -6,28 +6,19 @@ import de.hda.fbi.db2.stud.entity.Question;
 
 import java.security.cert.CertificateRevokedException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DataReader extends Lab01Data {
 
     private List<Question> questions = new ArrayList<Question>();
     private List<Categorie> categories = new ArrayList<Categorie>();
 
-    public boolean categorieExists(String name) {
-        for (Categorie categorie : categories) {
-            if (categorie.getName().contentEquals(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public Categorie getCategorie(String name){
-        for (Categorie categorie : categories) {
-            if (categorie.getName().contentEquals(name)) {
-                return categorie;
-            }
-        }
-        return null;
+        return categories.stream()
+                .filter(categorie -> name.equals(categorie.getName())).parallel()
+                .findAny()
+                .orElse(null);
     }
 
     @Override
@@ -65,7 +56,9 @@ public class DataReader extends Lab01Data {
             rightAnswear = Integer.parseInt(line[6]);
 
             categorie = line[7];
-            if (!this.categorieExists(categorie)) {
+
+            Categorie categorieExists = this.getCategorie(categorie);
+            if (categorieExists == null) {
                 Categorie tmpCategorie = new Categorie(categorie);
                 Question tmpQuestion = new Question(id, question, answears, rightAnswear,tmpCategorie);
                 tmpCategorie.getQuestions().add(tmpQuestion);
@@ -74,8 +67,8 @@ public class DataReader extends Lab01Data {
             }
             else
             {
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear,  this.getCategorie(categorie));
-                this.getCategorie(categorie).getQuestions().add(tmpQuestion);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear, categorieExists);
+                categorieExists.getQuestions().add(tmpQuestion);
                 questions.add(tmpQuestion);
             }
         }
@@ -85,7 +78,7 @@ public class DataReader extends Lab01Data {
 
             for (Question cQuestion : a.getQuestions()){
                 System.out.println("-----------------------------------");
-                System.out.println("QUESTION: " + cQuestion.getQuestion());
+                System.out.println("QUESTION: "+ cQuestion.getId() +" "+ cQuestion.getQuestion());
 
                 System.out.println("CHOISES:");
 
