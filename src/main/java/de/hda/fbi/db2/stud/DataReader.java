@@ -73,23 +73,10 @@ public class DataReader extends Lab01Data {
             }
         }
 
-        for (Categorie a : categories) {
-            System.out.println("Categorie: " + a.getName());
-
-            for (Question cQuestion : a.getQuestions()){
-                System.out.println("-----------------------------------");
-                System.out.println("QUESTION: "+ cQuestion.getId() +" "+ cQuestion.getQuestion());
-
-                System.out.println("CHOISES:");
-
-                for (String possibleAnswear : cQuestion.getPossibleAnswears()){
-                    System.out.println("# " + possibleAnswear);
-                }
-
-                System.out.println("==> RIGHT ANSWEAR '" + cQuestion.getIndexRightAnswear() + "': " + cQuestion.getRightAnswear());
-            }
-            System.out.println("********************************************************");
+        for (Categorie c : categories) {
+            System.out.println(c.toString());
         }
+
         System.out.println("number of categories: " + categories.size());
         System.out.println("number of Questions: " + questions.size());
     }
