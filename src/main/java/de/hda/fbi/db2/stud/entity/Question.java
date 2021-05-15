@@ -29,6 +29,19 @@ public class Question {
         return question;
     }
 
+    @Override
+    public String toString() {
+        String output;
+        output ="-----------------------------------\n";
+        output +="QUESTION: '" + id + "' " + question + "\n" + "CHOISES: \n";
+        for (String pAnswear:
+             possibleAnswears) {
+            output += "# " +pAnswear + "\n";
+        }
+        output += "=> RIGHT ANSWEAR: '" + indexRightAnswear + "' " + this.getRightAnswear() +"\n";
+        return output;
+    }
+
     public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear, Categorie categorie){
         this.id = id;
         this.question = question;

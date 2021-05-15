@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public class DataReader extends Lab01Data {
 
     private List<Question> questions = new ArrayList<Question>();
-    private List<Categorie> categories = new ArrayList<Categorie>();
+    private Map<String, Categorie> categories = new TreeMap<String, Categorie>();
 
-
+/*
     public Categorie getCategorie(String name){
         return categories.stream()
                 .filter(categorie -> name.equals(categorie.getName())).parallel()
@@ -21,14 +21,16 @@ public class DataReader extends Lab01Data {
                 .orElse(null);
     }
 
+ */
+
     @Override
-    public List<?> getQuestions() {
-        return null;
+    public List<Question> getQuestions() {
+        return this.questions;
     }
 
     @Override
-    public List<?> getCategories() {
-        return null;
+    public List<Categorie> getCategories() {
+        return new ArrayList<>(categories.values());
     }
 
     @Override
@@ -57,13 +59,13 @@ public class DataReader extends Lab01Data {
 
             categorie = line[7];
 
-            Categorie categorieExists = this.getCategorie(categorie);
+            Categorie categorieExists = this.categories.get(categorie);
             if (categorieExists == null) {
                 Categorie tmpCategorie = new Categorie(categorie);
                 Question tmpQuestion = new Question(id, question, answears, rightAnswear,tmpCategorie);
                 tmpCategorie.getQuestions().add(tmpQuestion);
                 questions.add(tmpQuestion);
-                categories.add(tmpCategorie);
+                categories.put(categorie, tmpCategorie);
             }
             else
             {
@@ -73,23 +75,10 @@ public class DataReader extends Lab01Data {
             }
         }
 
-        for (Categorie a : categories) {
-            System.out.println("Categorie: " + a.getName());
-
-            for (Question cQuestion : a.getQuestions()){
-                System.out.println("-----------------------------------");
-                System.out.println("QUESTION: "+ cQuestion.getId() +" "+ cQuestion.getQuestion());
-
-                System.out.println("CHOISES:");
-
-                for (String possibleAnswear : cQuestion.getPossibleAnswears()){
-                    System.out.println("# " + possibleAnswear);
-                }
-
-                System.out.println("==> RIGHT ANSWEAR '" + cQuestion.getIndexRightAnswear() + "': " + cQuestion.getRightAnswear());
-            }
-            System.out.println("********************************************************");
+        for (Categorie c : categories.values()) {
+            System.out.println(c);
         }
+
         System.out.println("number of categories: " + categories.size());
         System.out.println("number of Questions: " + questions.size());
     }
