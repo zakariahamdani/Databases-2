@@ -22,13 +22,13 @@ public class DataReader extends Lab01Data {
     }
 
     @Override
-    public List<?> getQuestions() {
-        return null;
+    public List<Question> getQuestions() {
+        return this.questions;
     }
 
     @Override
-    public List<?> getCategories() {
-        return null;
+    public List<Categorie> getCategories() {
+        return this.categories;
     }
 
     @Override
