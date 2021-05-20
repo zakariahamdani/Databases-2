@@ -23,6 +23,12 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Question> questions = new ArrayList<Question>();
 
+    public Category(){}
+
+    public Category(String name){
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -62,9 +68,5 @@ public class Category {
 
     public List<Question> getQuestions() {
         return questions;
-    }
-
-    public Category(String name){
-        this.name = name;
     }
 }

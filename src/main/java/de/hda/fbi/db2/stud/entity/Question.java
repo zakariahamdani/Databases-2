@@ -23,6 +23,17 @@ public class Question {
     @ManyToOne
     private Category category;
 
+    public Question(){
+
+    }
+
+    public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear){
+        this.id = id;
+        this.question = question;
+        this.possibleAnswears = possibleAnswears;
+        this.indexRightAnswear = indexRightAnswear;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -42,13 +53,6 @@ public class Question {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
-    }
-
-    public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear){
-        this.id = id;
-        this.question = question;
-        this.possibleAnswears = possibleAnswears;
-        this.indexRightAnswear = indexRightAnswear;
     }
 
     public List<String> getPossibleAnswears() {
