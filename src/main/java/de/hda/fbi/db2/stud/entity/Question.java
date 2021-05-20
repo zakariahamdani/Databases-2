@@ -6,6 +6,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderColumn;
 
 @Entity
 public class Question {
@@ -14,7 +15,9 @@ public class Question {
     private String question;
 
     @ElementCollection
+    @OrderColumn(name = "order")
     private List<String> possibleAnswears;
+
     private int indexRightAnswear;
 
     @ManyToOne
