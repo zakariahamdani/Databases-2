@@ -47,7 +47,10 @@ public class DataReader extends Lab01Data {
 
             category = line[7];
 
+            //check if Gategorie associated with this name exists alrerady or not
+            //get of a Map has a time complexity of O(log n)
             Category categoryExists = this.categories.get(category);
+
             if (categoryExists == null) {
 
                 Category tmpCategory = new Category(category);

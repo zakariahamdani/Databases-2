@@ -1,13 +1,45 @@
 package de.hda.fbi.db2.stud.entity;
 
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class Question {
+    @Id
     private int id;
     private String question;
+
+    @ElementCollection
     private List<String> possibleAnswears;
     private int indexRightAnswear;
+
+    @ManyToOne
     private Category category;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Question question1 = (Question) o;
+        return getId() == question1.getId() && getIndexRightAnswear() == question1
+            .getIndexRightAnswear()
+            && Objects.equals(getQuestion(), question1.getQuestion()) && Objects
+            .equals(getPossibleAnswears(), question1.getPossibleAnswears()) && Objects
+            .equals(category, question1.category);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 
     public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear){
         this.id = id;
