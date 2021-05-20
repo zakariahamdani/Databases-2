@@ -9,6 +9,13 @@ public class Question {
     private int indexRightAnswear;
     private Category category;
 
+    public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear){
+        this.id = id;
+        this.question = question;
+        this.possibleAnswears = possibleAnswears;
+        this.indexRightAnswear = indexRightAnswear;
+    }
+
     public List<String> getPossibleAnswears() {
         return possibleAnswears;
     }
@@ -33,6 +40,10 @@ public class Question {
         return category;
     }
 
+    public void setCategory(Category category){
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         String output;
@@ -44,13 +55,5 @@ public class Question {
         }
         output += "=> RIGHT ANSWEAR: '" + indexRightAnswear + "' " + this.getRightAnswear() +"\n";
         return output;
-    }
-
-    public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear, Category category){
-        this.id = id;
-        this.question = question;
-        this.possibleAnswears = possibleAnswears;
-        this.indexRightAnswear = indexRightAnswear;
-        this.category = category;
     }
 }

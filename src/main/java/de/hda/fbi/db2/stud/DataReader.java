@@ -28,7 +28,7 @@ public class DataReader extends Lab01Data {
         additionalCsvLines.remove(0);
 
         int id, rightAnswear;
-        String question, categorie;
+        String question, category;
 
         for (String[] line : additionalCsvLines) {
 
@@ -45,24 +45,26 @@ public class DataReader extends Lab01Data {
 
             rightAnswear = Integer.parseInt(line[6]);
 
-            categorie = line[7];
+            category = line[7];
 
-            Category categoryExists = this.categories.get(categorie);
+            Category categoryExists = this.categories.get(category);
             if (categoryExists == null) {
 
-                Category tmpCategory = new Category(categorie);
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear, tmpCategory);
+                Category tmpCategory = new Category(category);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear);
 
                 tmpCategory.addQuestion(tmpQuestion);
+                tmpQuestion.setCategory(tmpCategory);
 
                 questions.add(tmpQuestion);
-                categories.put(categorie, tmpCategory);
+                categories.put(category, tmpCategory);
             }
             else
             {
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear, categoryExists);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear);
 
                 categoryExists.addQuestion(tmpQuestion);
+                tmpQuestion.setCategory(categoryExists);
 
                 questions.add(tmpQuestion);
             }
