@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class lab02EntityManagerImpl extends Lab02EntityManager{
+public class Lab02EntityManagerImpl extends Lab02EntityManager{
 
   private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("docker-local-postgresPU");
   private static EntityManager em = emf.createEntityManager();
