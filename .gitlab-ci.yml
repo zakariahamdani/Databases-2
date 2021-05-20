@@ -40,8 +40,10 @@ spotbugs_main:
   stage: check
   script:
     - ./gradlew spotbugsMain -x test
+  after_script:
     - cp build/reports/spotbugs/main.html ./spotbugsMain.html
   artifacts:
+    when: always
     paths:
       - spotbugsMain.html
     expire_in: 1 week

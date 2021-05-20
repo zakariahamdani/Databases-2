@@ -3,7 +3,7 @@ package de.hda.fbi.db2.stud.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Categorie {
+public class Category {
     private String name;
     private List<Question> questions = new ArrayList<Question>();
 
@@ -14,7 +14,7 @@ public class Categorie {
 
     @Override
     public String toString() {
-        String output = "Categorie: " + name + '\n';
+        String output = "Category: " + name + '\n';
         for (Question question :
                 questions) {
             output += question.toString();
@@ -27,7 +27,7 @@ public class Categorie {
         return questions;
     }
 
-    public Categorie(String name){
+    public Category(String name){
         this.name = name;
     }
 }

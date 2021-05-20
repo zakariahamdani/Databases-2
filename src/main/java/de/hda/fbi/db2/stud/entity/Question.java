@@ -7,7 +7,7 @@ public class Question {
     private String question;
     private List<String> possibleAnswears;
     private int indexRightAnswear;
-    private Categorie categorie;
+    private Category category;
 
     public List<String> getPossibleAnswears() {
         return possibleAnswears;
@@ -29,6 +29,10 @@ public class Question {
         return question;
     }
 
+    public Category getCategorie() {
+        return category;
+    }
+
     @Override
     public String toString() {
         String output;
@@ -42,11 +46,11 @@ public class Question {
         return output;
     }
 
-    public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear, Categorie categorie){
+    public Question(int id, String question, List<String> possibleAnswears, int indexRightAnswear, Category category){
         this.id = id;
         this.question = question;
         this.possibleAnswears = possibleAnswears;
         this.indexRightAnswear = indexRightAnswear;
-        this.categorie = categorie;
+        this.category = category;
     }
 }

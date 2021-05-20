@@ -1,20 +1,18 @@
 package de.hda.fbi.db2.stud;
 
 import de.hda.fbi.db2.api.Lab01Data;
-import de.hda.fbi.db2.stud.entity.Categorie;
+import de.hda.fbi.db2.stud.entity.Category;
 import de.hda.fbi.db2.stud.entity.Question;
 
-import java.security.cert.CertificateRevokedException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class DataReader extends Lab01Data {
 
     private List<Question> questions = new ArrayList<Question>();
-    private Map<String, Categorie> categories = new TreeMap<String, Categorie>();
+    private Map<String, Category> categories = new TreeMap<String, Category>();
 
 /*
-    public Categorie getCategorie(String name){
+    public Category getCategorie(String name){
         return categories.stream()
                 .filter(categorie -> name.equals(categorie.getName())).parallel()
                 .findAny()
@@ -29,7 +27,7 @@ public class DataReader extends Lab01Data {
     }
 
     @Override
-    public List<Categorie> getCategories() {
+    public List<Category> getCategories() {
         return new ArrayList<>(categories.values());
     }
 
@@ -59,23 +57,28 @@ public class DataReader extends Lab01Data {
 
             categorie = line[7];
 
-            Categorie categorieExists = this.categories.get(categorie);
-            if (categorieExists == null) {
-                Categorie tmpCategorie = new Categorie(categorie);
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear,tmpCategorie);
-                tmpCategorie.getQuestions().add(tmpQuestion);
+            Category categoryExists = this.categories.get(categorie);
+            if (categoryExists == null) {
+
+                Category tmpCategory = new Category(categorie);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear, tmpCategory);
+
+                tmpCategory.getQuestions().add(tmpQuestion);
+
                 questions.add(tmpQuestion);
-                categories.put(categorie, tmpCategorie);
+                categories.put(categorie, tmpCategory);
             }
             else
             {
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear, categorieExists);
-                categorieExists.getQuestions().add(tmpQuestion);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear, categoryExists);
+
+                categoryExists.getQuestions().add(tmpQuestion);
+
                 questions.add(tmpQuestion);
             }
         }
 
-        for (Categorie c : categories.values()) {
+        for (Category c : categories.values()) {
             System.out.println(c);
         }
 
