@@ -63,7 +63,7 @@ public class DataReader extends Lab01Data {
                 Category tmpCategory = new Category(categorie);
                 Question tmpQuestion = new Question(id, question, answears, rightAnswear, tmpCategory);
 
-                tmpCategory.getQuestions().add(tmpQuestion);
+                tmpCategory.addQuestion(tmpQuestion);
 
                 questions.add(tmpQuestion);
                 categories.put(categorie, tmpCategory);
@@ -72,7 +72,7 @@ public class DataReader extends Lab01Data {
             {
                 Question tmpQuestion = new Question(id, question, answears, rightAnswear, categoryExists);
 
-                categoryExists.getQuestions().add(tmpQuestion);
+                categoryExists.addQuestion(tmpQuestion);
 
                 questions.add(tmpQuestion);
             }

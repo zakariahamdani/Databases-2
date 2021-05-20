@@ -12,6 +12,10 @@ public class Category {
         return name;
     }
 
+    public void addQuestion(Question question){
+        this.getQuestions().add(question);
+    }
+
     @Override
     public String toString() {
         String output = "Category: " + name + '\n';
