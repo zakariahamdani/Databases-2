@@ -11,15 +11,6 @@ public class DataReader extends Lab01Data {
     private List<Question> questions = new ArrayList<Question>();
     private Map<String, Category> categories = new TreeMap<String, Category>();
 
-/*
-    public Category getCategorie(String name){
-        return categories.stream()
-                .filter(categorie -> name.equals(categorie.getName())).parallel()
-                .findAny()
-                .orElse(null);
-    }
-
- */
 
     @Override
     public List<Question> getQuestions() {
@@ -38,7 +29,6 @@ public class DataReader extends Lab01Data {
 
         int id, rightAnswear;
         String question, categorie;
-
 
         for (String[] line : additionalCsvLines) {
 
