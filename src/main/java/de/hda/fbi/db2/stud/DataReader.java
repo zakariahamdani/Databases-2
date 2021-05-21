@@ -11,15 +11,6 @@ public class DataReader extends Lab01Data {
     private List<Question> questions = new ArrayList<Question>();
     private Map<String, Category> categories = new TreeMap<String, Category>();
 
-/*
-    public Category getCategorie(String name){
-        return categories.stream()
-                .filter(categorie -> name.equals(categorie.getName())).parallel()
-                .findAny()
-                .orElse(null);
-    }
-
- */
 
     @Override
     public List<Question> getQuestions() {
@@ -37,8 +28,7 @@ public class DataReader extends Lab01Data {
         additionalCsvLines.remove(0);
 
         int id, rightAnswear;
-        String question, categorie;
-
+        String question, category;
 
         for (String[] line : additionalCsvLines) {
 
@@ -55,24 +45,29 @@ public class DataReader extends Lab01Data {
 
             rightAnswear = Integer.parseInt(line[6]);
 
-            categorie = line[7];
+            category = line[7];
 
-            Category categoryExists = this.categories.get(categorie);
+            //check if Gategorie associated with this name exists alrerady or not
+            //get of a Map has a time complexity of O(log n)
+            Category categoryExists = this.categories.get(category);
+
             if (categoryExists == null) {
 
-                Category tmpCategory = new Category(categorie);
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear, tmpCategory);
+                Category tmpCategory = new Category(category);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear);
 
-                tmpCategory.getQuestions().add(tmpQuestion);
+                tmpCategory.addQuestion(tmpQuestion);
+                tmpQuestion.setCategory(tmpCategory);
 
                 questions.add(tmpQuestion);
-                categories.put(categorie, tmpCategory);
+                categories.put(category, tmpCategory);
             }
             else
             {
-                Question tmpQuestion = new Question(id, question, answears, rightAnswear, categoryExists);
+                Question tmpQuestion = new Question(id, question, answears, rightAnswear);
 
-                categoryExists.getQuestions().add(tmpQuestion);
+                categoryExists.addQuestion(tmpQuestion);
+                tmpQuestion.setCategory(categoryExists);
 
                 questions.add(tmpQuestion);
             }
