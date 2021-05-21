@@ -14,12 +14,12 @@ public class Lab02EntityManagerImpl extends Lab02EntityManager{
   public void persistData() {
       em.getTransaction().begin();
 
+    for (Category category : this.lab01Data.getCategories()){
+      em.persist(category);
+    }
+
       for(Question question : this.lab01Data.getQuestions()){
         em.persist(question);
-      }
-
-      for (Category category : this.lab01Data.getCategories()){
-        em.persist(category);
       }
 
       em.getTransaction().commit();

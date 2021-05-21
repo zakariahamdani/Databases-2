@@ -15,7 +15,7 @@ public class Question {
     private String question;
 
     @ElementCollection
-    @OrderColumn(name = "order")
+    @OrderColumn(name = "sequencee")
     private List<String> possibleAnswears;
 
     private int indexRightAnswear;
