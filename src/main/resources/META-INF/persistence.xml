@@ -34,11 +34,11 @@
 
         <!-- this must be provided -->
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://postgres.fbi.h-da.de:5432/st*-account" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://postgres.fbi.h-da.de:5432/stzahamd" />
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <!-- Please use a functional user as described here:  https://code.fbi.h-da.de/lab-docs/db/-/wikis/postgresql/Teams-im-Praktikum -->
-            <property name="javax.persistence.jdbc.user" value="username" />
-            <property name="javax.persistence.jdbc.password" value="password" />
+            <property name="javax.persistence.jdbc.user" value="fr3y_db" />
+            <property name="javax.persistence.jdbc.password" value="p.fr3y_db.w" />
 
             <!--<property name="javax.persistence.schema-generation.database.action" value="none"/>-->
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
