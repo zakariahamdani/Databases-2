@@ -29,6 +29,7 @@ public class Category {
         this.name = name;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -38,8 +39,7 @@ public class Category {
             return false;
         }
         Category category = (Category) o;
-        return cId == category.cId && Objects.equals(getName(), category.getName())
-            && Objects.equals(getQuestions(), category.getQuestions());
+        return cId == category.cId;
     }
 
     @Override

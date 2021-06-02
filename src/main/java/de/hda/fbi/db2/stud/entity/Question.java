@@ -42,12 +42,8 @@ public class Question {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Question question1 = (Question) o;
-        return getId() == question1.getId() && getIndexRightAnswear() == question1
-            .getIndexRightAnswear()
-            && Objects.equals(getQuestion(), question1.getQuestion()) && Objects
-            .equals(getPossibleAnswears(), question1.getPossibleAnswears()) && Objects
-            .equals(category, question1.category);
+        Question question = (Question) o;
+        return getId() == question.getId();
     }
 
     @Override
