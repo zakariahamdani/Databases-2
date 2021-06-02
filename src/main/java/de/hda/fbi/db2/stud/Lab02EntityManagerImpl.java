@@ -10,6 +10,7 @@ public class Lab02EntityManagerImpl extends Lab02EntityManager{
 
   private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("fbi-postgresPU");
   private static EntityManager em = emf.createEntityManager();
+
   @Override
   public void persistData() {
       em.getTransaction().begin();
@@ -23,7 +24,6 @@ public class Lab02EntityManagerImpl extends Lab02EntityManager{
       }
 
       em.getTransaction().commit();
-      em.close();
   }
 
   @Override
