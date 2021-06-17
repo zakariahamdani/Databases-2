@@ -1,15 +1,18 @@
 package de.hda.fbi.db2.stud.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OrderColumn;
 
 @Entity
-public class Question {
+@NamedQuery(name = "Question.findByCategoryId", query = "select q, c from Question q join q.category c where c.cId = :cid")
+public class Question{
     @Id
     private int id;
     private String question;
@@ -89,6 +92,18 @@ public class Question {
             output += "# " +pAnswear + "\n";
         }
         output += "=> RIGHT ANSWEAR: '" + indexRightAnswear + "' " + this.getRightAnswear() +"\n";
+        return output;
+    }
+
+    public String toStringWithoutAnswear() {
+        String output;
+        int i = 0;
+        output ="-----------------------------------\n";
+        output +="QUESTION: '" + id + "' " + question + "\n" + "CHOISES: \n";
+        for (String pAnswear:
+            possibleAnswears) {
+            output += "# " +pAnswear + "\n";
+        }
         return output;
     }
 }
