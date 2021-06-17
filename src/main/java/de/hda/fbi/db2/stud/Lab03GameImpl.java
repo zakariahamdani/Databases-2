@@ -57,9 +57,13 @@ public class Lab03GameImpl extends Lab03Game {
       Random rand = new Random();
 
       Category category = (Category) c;
-
-      List result =  lab02EntityManager.getEntityManager().createNamedQuery("Question.findByCategoryId").setParameter("cid", category.getcId()).getResultList();
-
+      List result = new ArrayList<Question>();
+      try {
+        result =  lab02EntityManager.getEntityManager().createNamedQuery("Question.findByCategoryId").setParameter("cid", category.getcId()).getResultList();
+      }
+      catch (NoResultException e){
+        System.out.println(e);
+      }
 
       if (result.size() < amountOfQuestionsForCategory){
 
