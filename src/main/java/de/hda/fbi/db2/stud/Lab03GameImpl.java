@@ -22,12 +22,15 @@ public class Lab03GameImpl extends Lab03Game {
   public Object getOrCreatePlayer(String playerName) {
     lab02EntityManager.getEntityManager().getTransaction().begin();
     String queryNAme = "Player.findByName";
+    Player tmpPlayer;
     try {
-      return  (Player) lab02EntityManager.getEntityManager().createNamedQuery(queryNAme).setParameter("name", playerName).getSingleResult();
+      tmpPlayer = (Player) lab02EntityManager.getEntityManager().createNamedQuery(queryNAme).setParameter("name", playerName).getSingleResult();
     }
     catch (NoResultException e){
-      return new Player(playerName);
+      tmpPlayer = new Player(playerName);
     }
+    lab02EntityManager.getEntityManager().getTransaction().commit();
+    return tmpPlayer;
   }
 
   @Override
@@ -47,7 +50,7 @@ public class Lab03GameImpl extends Lab03Game {
 
   @Override
   public List<?> getQuestions(List<?> categories, int amountOfQuestionsForCategory) {
-
+    lab02EntityManager.getEntityManager().getTransaction().begin();
     List <Question> questions = new ArrayList<Question>();;
     for (Object c : categories) {
 
@@ -73,6 +76,7 @@ public class Lab03GameImpl extends Lab03Game {
         }
       }
     }
+    lab02EntityManager.getEntityManager().getTransaction().commit();
     if (questions.size() > 0){
       return questions;
     }else{
@@ -171,10 +175,10 @@ public class Lab03GameImpl extends Lab03Game {
 
   @Override
   public void persistGame(Object game) {
-
+    lab02EntityManager.getEntityManager().getTransaction().begin();
     Game game1 = (Game) game;
     lab02EntityManager.getEntityManager().persist(game1);
-    //lab02EntityManager.getEntityManager().persist(game1.getPlayer());
+    lab02EntityManager.getEntityManager().persist(game1.getPlayer());
     lab02EntityManager.getEntityManager().getTransaction().commit();
   }
 }

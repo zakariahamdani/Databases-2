@@ -15,6 +15,10 @@ public abstract class Lab03Game {
    */
   protected Lab01Data lab01Data;
 
+  public Lab02EntityManager getLab02EntityManager() {
+    return lab02EntityManager;
+  }
+
   /**
    * You can use the EntityManager or other stuff from lab02, this variable will be automatically
    * set.
