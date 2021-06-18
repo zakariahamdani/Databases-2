@@ -20,6 +20,10 @@ public class Category {
     @Column(unique = true)
     private String name;
 
+    public int getcId() {
+        return cId;
+    }
+
     @OneToMany(mappedBy = "category")
     private List<Question> questions = new ArrayList<Question>();
 

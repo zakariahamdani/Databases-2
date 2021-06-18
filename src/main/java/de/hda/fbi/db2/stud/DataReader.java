@@ -17,6 +17,14 @@ public class DataReader extends Lab01Data {
         return this.questions;
     }
 
+    public Question getQuestionsById(int p_id) {
+        for (Question q : questions) {
+            if (q.getId() == p_id) {
+                return q;
+            }
+        }
+        return null;
+    }
     @Override
     public List<Category> getCategories() {
         return new ArrayList<>(categories.values());
