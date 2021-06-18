@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ public class Game {
   @Column(name= "gid")
   private int gId;
 
-  @ManyToOne(fetch= FetchType.EAGER, cascade= CascadeType.ALL)
+  @ManyToOne(fetch= FetchType.LAZY, cascade= CascadeType.ALL)
   private Player player;
 
   @ElementCollection
@@ -46,21 +47,37 @@ public class Game {
   @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   private Timestamp startedAt;
 
-
   @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
   private Timestamp endedAt;
+
+  public void setStartedAt(long p_startedAt) {
+    this.startedAt = new Timestamp(p_startedAt);
+  }
+
+  public void setEndedAt(long p_endedAt) {
+    this.endedAt = new Timestamp(p_endedAt);
+  }
 
   public Game() {
   }
 
-  public void setStart() {
-    this.startedAt = new Timestamp(System.currentTimeMillis());
+  public void setStart() { this.startedAt = new Timestamp(System.currentTimeMillis()); }
+
+  public void setEnd() { this.endedAt = new Timestamp(System.currentTimeMillis()); }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Game game = (Game) o;
+    return gId == game.gId;
   }
 
-  public void setEnd() {
-    this.endedAt = new Timestamp(System.currentTimeMillis());
+  @Override
+  public int hashCode() {
+    return Objects.hash(gId);
   }
-
 
   public Game(Object player, List<?> questions) {
     List <Question> tmp = (List <Question>) questions;

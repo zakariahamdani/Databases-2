@@ -33,6 +33,8 @@
         <!-- put your entity-classes here -->
         <class>de.hda.fbi.db2.stud.entity.Category</class>
         <class>de.hda.fbi.db2.stud.entity.Question</class>
+        <class>de.hda.fbi.db2.stud.entity.Player</class>
+        <class>de.hda.fbi.db2.stud.entity.Game</class>
         <!-- this must be provided -->
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://postgres.fbi.h-da.de:5432/stzahamd" />
@@ -44,6 +46,8 @@
             <!--<property name="javax.persistence.schema-generation.database.action" value="none"/>-->
             <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
+            <property name="eclipselink.jdbc.batch-writing.size" value="1000"/>
 
             <property name="eclipselink.logging.level" value="WARNING"/>
             <property name="eclipselink.logging.exceptions" value="false"/>

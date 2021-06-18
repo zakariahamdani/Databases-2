@@ -20,7 +20,7 @@ public class Lab03GameImpl extends Lab03Game {
 
   @Override
   public Object getOrCreatePlayer(String playerName) {
-    lab02EntityManager.getEntityManager().getTransaction().begin();
+    //lab02EntityManager.getEntityManager().getTransaction().begin();
     String queryNAme = "Player.findByName";
     Player tmpPlayer;
     try {
@@ -29,7 +29,7 @@ public class Lab03GameImpl extends Lab03Game {
     catch (NoResultException e){
       tmpPlayer = new Player(playerName);
     }
-    lab02EntityManager.getEntityManager().getTransaction().commit();
+    //lab02EntityManager.getEntityManager().getTransaction().commit();
     return tmpPlayer;
   }
 
@@ -50,7 +50,7 @@ public class Lab03GameImpl extends Lab03Game {
 
   @Override
   public List<?> getQuestions(List<?> categories, int amountOfQuestionsForCategory) {
-    lab02EntityManager.getEntityManager().getTransaction().begin();
+    //lab02EntityManager.getEntityManager().getTransaction().begin();
     List <Question> questions = new ArrayList<Question>();;
     for (Object c : categories) {
 
@@ -59,7 +59,9 @@ public class Lab03GameImpl extends Lab03Game {
       Category category = (Category) c;
       List result = new ArrayList<Question>();
       try {
-        result =  lab02EntityManager.getEntityManager().createNamedQuery("Question.findByCategoryId").setParameter("cid", category.getcId()).getResultList();
+        result =  lab02EntityManager.getEntityManager().createNamedQuery("Question.findByCategoryId").setParameter("cid", category.getcId())
+                .setHint("eclipselink.query-results-cache", true)
+                .getResultList();
       }
       catch (NoResultException e){
         System.out.println(e);
@@ -80,7 +82,7 @@ public class Lab03GameImpl extends Lab03Game {
         }
       }
     }
-    lab02EntityManager.getEntityManager().getTransaction().commit();
+    //lab02EntityManager.getEntityManager().getTransaction().commit();
     if (questions.size() > 0){
       return questions;
     }else{
@@ -144,7 +146,19 @@ public class Lab03GameImpl extends Lab03Game {
 
   @Override
   public void playGame(Object game) {
+    Game actGame = (Game) game;
+    for (Question q : actGame.getAnswers().keySet()) {
+      DataReader lab01 = (DataReader) lab01Data;
 
+      Random rand = new Random(); //instance of random class
+      Integer answear_int = rand.nextInt(5);
+
+      if (answear_int.equals(q.getIndexRightAnswear())){
+        actGame.getAnswers().put(q, true);
+      }else{
+        actGame.getAnswers().put(q, false);
+      }
+    }
   }
 
   @Override
@@ -179,7 +193,7 @@ public class Lab03GameImpl extends Lab03Game {
 
   @Override
   public void persistGame(Object game) {
-    lab02EntityManager.getEntityManager().getTransaction().begin();
+    //lab02EntityManager.getEntityManager().getTransaction().begin();
     Game game1 = (Game) game;
     lab02EntityManager.getEntityManager().persist(game1);
     lab02EntityManager.getEntityManager().persist(game1.getPlayer());
